@@ -1,0 +1,12 @@
+{
+    "name": "Google SDk",
+    "image": "google/cloud-sdk:533.0.0",
+    "postCreateCommand": ".devcontainer/postCreateCommands.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hashicorp.terraform"
+            ]
+        }
+    }
+}
