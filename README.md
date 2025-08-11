@@ -74,8 +74,8 @@ Some notes about the architecture of this setup:
         * billing_alert_amount = "the_amount_you_want" - This isn't really a sensitive variable, but to simply things, we can put it in the same ".auto.tfvars" file. This defaults to "5", so this only needs defined if you want to set a different billing alert threshold.
         * duckdns_subdomains = "your_subdomain" - Values captured in Step #1.
         * duckdns_token = "your_duckdns_token" - Values captured in Step #1.
-        * gcp_billing_project_name = The name of your GCP billing project. This may be the same as your GCP project.
-        * gcp_project_name = The name of your GCP project.
+        * gcp_billing_project_name = The name of your GCP billing project. This may be the same as your GCP project. (It is the Project ID actual-budget-468618)
+        * gcp_project_name = The name of your GCP project. (It is the Project ID actual-budget-468618)
         * gcp_region = The GCP region you wish your workload to run in (for example, us-central1). Keep in mind [only certain regions are eligible for the always-free Compute Engine instance][3].
         * gcp_zone = The zone within the GCP region you want to use (for example, us-central1-c).
         * public_key_path - The path on your local machine to the SSH public key that was generated in Step #2 (if it was named something other than the default value defined in `compute-variables.tf`)

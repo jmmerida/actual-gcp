@@ -1,10 +1,10 @@
 terraform {
   cloud {
 
-    organization = "your-organization"
+    organization = "PersonalTestingPlayGround"
 
     workspaces {
-      name = "your-workspace"
+      name = "ActualDeployment"
     }
   }
 }
