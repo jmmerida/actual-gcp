@@ -73,6 +73,20 @@ locals {
         mkdir -p /mnt/disks/data/actual-data
         cp /tmp/Caddyfile /mnt/disks/data/caddy/Caddyfile
         EOT5
+    },
+    {
+      path        = "/etc/systemd/system/bank_sync.service"
+      permissions = "0644"
+      owner       = "root"
+      content     = <<-EOT6
+                [Unit]
+                Description=Start Bank Sync
+
+                [Service]
+                ExecStart=docker run -e ACTUAL_SERVER_URL="YOUR_SEVER_URL_SHOULD_INCLUDE_FINAL_BACKSLASH" -e ACTUAL_SERVER_PASSWORD='yourPassword' -e CRON_SCHEDULE="0 1 * * *" -e LOG_LEVEL="info" -e ACTUAL_BUDGET_SYNC_IDS="481d4273-bc76-47fb-8001-e8a26eb8912c[groupIdInMedatada.json]" -e TIMEZONE="UTC" -e RUN_ON_START="true" -e ENCRYPTION_PASSWORDS="" --name=bank_sync seriouslag/actual-auto-sync:latest
+                ExecStop=/usr/bin/docker stop bank_sync
+                ExecStopPost=/usr/bin/docker rm bank_sync
+                EOT6
     }
   ]
 
@@ -81,7 +95,8 @@ locals {
     "systemctl daemon-reload",
     "systemctl start caddy.service",
     "systemctl start actual.service",
-    "systemctl start duckdns.service"
+    "systemctl start duckdns.service",
+    "systemctl start bank_sync.service"
   ]
 
   bootcmd = [
